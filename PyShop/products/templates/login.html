@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Google Auth</title>
+        <meta name="google-signin-client_id" content="379374011281-etne7pepgdr489c54jfkeg22v07tifnq.apps.googleusercontent.com"</meta>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <div id="content"></div>
+        <button onclick="signOut()">Sign Out</button>
+    </head>
+
+    <body>
+        <h1>Log In</h1>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </body>
+
+    <script>
+        function onSignIn(googleUser) {
+            console.log('User is ' + JSON.stringify(googleUser.getBasicProfile()))
+            var element = document.querySelector('#content').innerText =
+                googleUser.getBasicProfile().getGivenName();
+
+
+        }
+
+        function signOut() {
+            gapi.auth2.getAuthInstance().signOut().then(function() {
+                console.log('user signed out')
+            })
+        }
+    </script>
+</html>
